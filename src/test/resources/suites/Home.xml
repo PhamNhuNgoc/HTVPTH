@@ -1,0 +1,20 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Test home page">
+    <!--<listeners>
+        <listener class-name="listeners.AnnotationTransformer"/>
+    </listeners>-->
+
+    <parameter name="browser" value="chrome" />
+    <test name="open Ho So Tai Lieu page from menu on Home page">
+        <parameter name="typeLogin" value="Đăng nhập bằng mã nhân viên" />
+        <parameter name="userID" value="28224" />
+        <parameter name="password" value="Spcit@123" />
+        <classes>
+            <class name="testcases.HomeTest">
+                <methods>
+                    <include name="testNavigateToHSoTLieu" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

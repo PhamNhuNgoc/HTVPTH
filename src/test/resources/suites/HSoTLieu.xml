@@ -1,0 +1,26 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Test Ho So Tai Lieu page">
+    <!--<listeners>
+        <listener class-name="listeners.AnnotationTransformer"/>
+    </listeners>-->
+
+    <parameter name="browser" value="chrome" />
+    <test name="filter Ho So Tai Lieu">
+        <parameter name="typeLogin" value="Đăng nhập bằng mã nhân viên" />
+        <parameter name="userID" value="28224" />
+        <parameter name="password" value="Spcit@123" />
+        <classes>
+            <class name="testcases.HSoTLieuTest">
+                <methods>
+<!--                    <include name="testChonLoaiHSo" />-->
+<!--                    <include name="testSetNamLapHSo" />-->
+<!--                    <include name="testChonLinhVuc" />-->
+<!--                    <include name="testSetNoiTaoHSo" />-->
+<!--                    <include name="testSetTieuDe" />-->
+<!--                    <include name="testFilterHSo" />-->
+                    <include name="testXuatExcel" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

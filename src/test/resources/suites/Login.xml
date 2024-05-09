@@ -1,0 +1,20 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Test login form">
+    <!--<listeners>
+        <listener class-name="listeners.AnnotationTransformer"/>
+    </listeners>-->
+
+    <parameter name="browser" value="chrome" />
+    <test name="valid user and password">
+        <parameter name="typeLogin" value="Đăng nhập bằng mã nhân viên" />
+        <parameter name="userID" value="28224" />
+        <parameter name="password" value="Spcit@123" />
+        <classes>
+            <class name="testcases.LoginTest">
+                <methods>
+<!--                    <include name="LoginWithValidData" />-->
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,6 @@
+<suite name="Dang ky sang kien">
+    <suite-files>
+        <suite-file path="Login.xml"/>
+        <suite-file path="Home.xml"/>
+    </suite-files>
+</suite>
