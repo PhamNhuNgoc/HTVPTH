@@ -18,7 +18,9 @@
 <!--                    <include name="testSetNoiTaoHSo" />-->
 <!--                    <include name="testSetTieuDe" />-->
 <!--                    <include name="testFilterHSo" />-->
-                    <include name="testXuatExcel" />
+<!--                    <include name="testXuatExcel" />-->
+<!--                    <include name="testNhapTuExcel" />-->
+                    <include name="testThemMoiHSo" />
                 </methods>
             </class>
         </classes>

@@ -66,4 +66,17 @@ public class HSoTLieuTest extends BaseTest {
         hSoTLieuPage.clickXuatExcel();
         hSoTLieuPage.checkExcelFile();
     }
+
+    @Test(dataProvider = "objNhapTuExcel", dataProviderClass = HSoTLieuDataProvider.class)
+    public void testNhapTuExcel(String filePath) throws Exception {
+        hSoTLieuPage.nhapTuExcel(filePath);
+        Assert.assertEquals(hSoTLieuPage.getMessageAlert(), "Tải dữ liệu lên hoàn tất");
+    }
+
+    @Test(dataProvider = "objThemMoiHSo", dataProviderClass = HSoTLieuDataProvider.class)
+    public void testThemMoiHSo(String maHSo, String soHSo, String soHop, String soTo, String tieuDe, String tuSo, String denSo, String tuNgay, String denNgay, String ngayLap, String linhVuc, String thoiGianBQuan, String tinhTrang, String ghiChu){
+        hSoTLieuPage.themMoiHSo(maHSo, soHSo, soHop, soTo, tieuDe, tuSo, denSo, tuNgay, denNgay, ngayLap, linhVuc, thoiGianBQuan, tinhTrang, ghiChu);
+        hSoTLieuPage.checkHSoDaThem(maHSo, soHSo, tieuDe, ngayLap, linhVuc, soHop);
+    }
+
 }

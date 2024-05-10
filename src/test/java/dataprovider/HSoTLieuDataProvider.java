@@ -46,4 +46,20 @@ public class HSoTLieuDataProvider{
                 {"Tất cả", "2023", "Tất cả", "P. Công Nghệ Phần Mềm", ""},
         };
     }
+
+    @DataProvider
+    public Object[][] objNhapTuExcel(){
+        return new Object[][]{
+                {"src\\test\\resources\\importedFiles\\ImportExcelTest.xlsx"},
+        };
+    }
+
+    @DataProvider
+    public Object[][] objThemMoiHSo(){
+        return new Object[][]{
+                {"11111", "111", "1", "100", "Tiêu Đề Hồ Sơ", "1", "111", "01/01/2024", "01/05/2024", "10/05/2024", "-Nghệ thuật", "20 năm", "Mới", "Ghi Chú Hồ Sơ"},
+                {"11111", "", "1", "100", "Tiêu Đề Hồ Sơ", "1", "111", "01/01/2024", "01/05/2024", "10/05/2024", "-Nghệ thuật", "20 năm", "Mới", "Ghi Chú Hồ Sơ"},
+                {"11111", "111", "1", "100", "", "1", "111", "01/01/2024", "01/05/2024", "10/05/2024", "-Nghệ thuật", "20 năm", "Mới", "Ghi Chú Hồ Sơ"},
+        };
+    }
 }

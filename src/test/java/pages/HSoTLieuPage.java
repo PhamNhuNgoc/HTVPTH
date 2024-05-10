@@ -12,23 +12,43 @@ import java.util.List;
 import static org.openqa.selenium.Keys.ENTER;
 
 public class HSoTLieuPage extends CommonPage{
-    By dropdownLoaiHSo = By.xpath("//label[text()='Loại hồ sơ']/following-sibling::p-dropdown");
-    By namLapHSo = By.xpath("//label[text()='Năm lập hồ sơ']/following-sibling::p-inputnumber//input");
-    By dropdownLinhVuc = By.xpath("//label[text()='Lĩnh vực']/following-sibling::p-dropdown");
-    By noiTaoHSo = By.xpath("//label[text()='Nơi tạo hồ sơ']/following-sibling::input");
-    By tieuDe = By.xpath("(//label[text()='Tiêu đề']/following-sibling::input)[1]");
+    By dropdownLoaiHSoFilter = By.xpath("//label[text()='Loại hồ sơ']/following-sibling::p-dropdown");
+    By namLapHSoFilter = By.xpath("//label[text()='Năm lập hồ sơ']/following-sibling::p-inputnumber//input");
+    By dropdownLinhVucFilter = By.xpath("//label[text()='Lĩnh vực']/following-sibling::p-dropdown");
+    By noiTaoHSoFilter = By.xpath("//label[text()='Nơi tạo hồ sơ']/following-sibling::input");
+    By tieuDeFilter = By.xpath("(//label[text()='Tiêu đề']/following-sibling::input)[1]");
     By buttonNhapTuExcel = By.xpath("(//p-button[@label='Nhập từ excel']//button)[1]");
-    By fileuploadExcel = By.xpath("//input[@type='file']");
+    By fileuploadExcel = By.xpath("//p-fileupload[@chooselabel='Duyệt file']");
+    By buttonXNhanNhapTuExcel = By.xpath("//button[@label='Xác nhận']/span");
+    By messageAlert = By.xpath("//div[@role='alert']/div/div[2]");
+    By buttonDongY = By.xpath("//span[text()='Đồng ý']");
     By buttonXuatExcel = By.xpath("//p-button[@label='Xuất excel']//button");
+    By buttonThemMoi = By.xpath("//p-button[@label='Thêm mới']/button");
     By tableHSoTLieu = By.xpath("(//p-table)[1]");
+    By trangThai = By.xpath("//div[text()=' Trạng thái: ']/h5");
+    By maHSoThemMoi = By.xpath("//label[text()='Mã hồ sơ']/following-sibling::input");
+    By soHSoThemMoi = By.xpath("//label[text()='Số hồ sơ']/following-sibling::input");
+    By soHopThemMoi = By.xpath("//label[text()='Số hộp']/following-sibling::input");
+    By soToThemMoi = By.xpath("//label[text()='Số tờ']/following-sibling::p-inputnumber//input");
+    By tieuDeThemMoi = By.xpath("//label[text()='Tiêu đề']/following-sibling::textarea");
+    By tuSoThemMoi = By.xpath("//label[text()='Từ số']/following-sibling::p-inputnumber//input");
+    By denSoThemMoi = By.xpath("//label[text()='Đến số']/following-sibling::p-inputnumber//input");
+    By tuNgayThemMoi = By.xpath("//label[text()='Từ ngày']/following-sibling::p-calendar");
+    By denNgayThemMoi = By.xpath("//label[text()='Đến ngày']/following-sibling::p-calendar");
+    By ngayLapThemMoi = By.xpath("//label[text()='Ngày lập']/following-sibling::p-calendar");
+    By dropdownLinhVucThemMoi = By.xpath("//p-dropdown[@placeholder='Chọn lĩnh vực']");
+    By dropdownTGianBQuan = By.xpath("//p-dropdown[@placeholder='Thời gian bảo quản']");
+    By dropdownTinhTrang = By.xpath("//p-dropdown[@placeholder='Tình trạng']");
+    By ghiChuThemMoi = By.xpath("//label[text()='Ghi chú']/following-sibling::textarea");
+    By buttonLuuThemMoi = By.xpath("//span[text()='Lưu']");
 
     public void chonLoaiHSo(String loaiHSo){
         WebUI.waitForPageLoaded();
         WebUI.waitForElementVisible(buttonXuatExcel, 5);
         WebUI.moveToElement(buttonXuatExcel);
-        WebUI.moveToElement(dropdownLoaiHSo);
-        WebUI.waitForElementVisible(dropdownLoaiHSo, 100);
-        AngularDropdown chonLoaiHSo = new AngularDropdown(dropdownLoaiHSo);
+        WebUI.moveToElement(dropdownLoaiHSoFilter);
+        WebUI.waitForElementVisible(dropdownLoaiHSoFilter, 100);
+        AngularDropdown chonLoaiHSo = new AngularDropdown(dropdownLoaiHSoFilter);
         chonLoaiHSo.setValues(loaiHSo);
     }
 
@@ -64,10 +84,10 @@ public class HSoTLieuPage extends CommonPage{
         WebUI.waitForPageLoaded();
         WebUI.waitForElementVisible(buttonXuatExcel, 5);
         WebUI.moveToElement(buttonXuatExcel);
-        WebUI.moveToElement(namLapHSo);
-        WebUI.waitForElementVisible(namLapHSo, 100);
-        WebUI.clearText(namLapHSo);
-        WebUI.setText(namLapHSo, nam, ENTER);
+        WebUI.moveToElement(namLapHSoFilter);
+        WebUI.waitForElementVisible(namLapHSoFilter, 100);
+        WebUI.clearText(namLapHSoFilter);
+        WebUI.setText(namLapHSoFilter, nam, ENTER);
         WebUI.waitForTextToBeChanged(tableHSoTLieu);
     }
 
@@ -98,9 +118,9 @@ public class HSoTLieuPage extends CommonPage{
         WebUI.waitForPageLoaded();
         WebUI.waitForElementVisible(buttonXuatExcel, 5);
         WebUI.moveToElement(buttonXuatExcel);
-        WebUI.moveToElement(dropdownLinhVuc);
-        WebUI.waitForElementVisible(dropdownLinhVuc, 100);
-        AngularDropdown chonLinhVuc = new AngularDropdown(dropdownLinhVuc);
+        WebUI.moveToElement(dropdownLinhVucFilter);
+        WebUI.waitForElementVisible(dropdownLinhVucFilter, 100);
+        AngularDropdown chonLinhVuc = new AngularDropdown(dropdownLinhVucFilter);
         chonLinhVuc.setValues(linhVuc);
     }
 
@@ -134,10 +154,10 @@ public class HSoTLieuPage extends CommonPage{
         WebUI.waitForPageLoaded();
         WebUI.waitForElementVisible(buttonXuatExcel, 5);
         WebUI.moveToElement(buttonXuatExcel);
-        WebUI.moveToElement(noiTaoHSo);
-        WebUI.waitForElementVisible(noiTaoHSo, 100);
-        WebUI.clearText(noiTaoHSo);
-        WebUI.setText(noiTaoHSo, noiTao);
+        WebUI.moveToElement(noiTaoHSoFilter);
+        WebUI.waitForElementVisible(noiTaoHSoFilter, 100);
+        WebUI.clearText(noiTaoHSoFilter);
+        WebUI.setText(noiTaoHSoFilter, noiTao);
     }
 
     public void checkNoiTaoHSo(String noiTaoHSo) {
@@ -170,10 +190,10 @@ public class HSoTLieuPage extends CommonPage{
         WebUI.waitForPageLoaded();
         WebUI.waitForElementVisible(buttonXuatExcel, 5);
         WebUI.moveToElement(buttonXuatExcel);
-        WebUI.moveToElement(tieuDe);
-        WebUI.waitForElementVisible(tieuDe, 100);
-        WebUI.clearText(tieuDe);
-        WebUI.setText(tieuDe, tieuDeHSo);
+        WebUI.moveToElement(tieuDeFilter);
+        WebUI.waitForElementVisible(tieuDeFilter, 100);
+        WebUI.clearText(tieuDeFilter);
+        WebUI.setText(tieuDeFilter, tieuDeHSo);
     }
 
     public void checkTieuDe(String tieuDeHSo) {
@@ -226,6 +246,88 @@ public class HSoTLieuPage extends CommonPage{
         WebUI.clickElement(buttonNhapTuExcel);
         WebUI.waitForElementVisible(fileuploadExcel, 100);
         AngularFileUpload fileUpload = new AngularFileUpload(fileuploadExcel);
-        fileUpload.upload(filePath);
+        try {
+            fileUpload.upload(filePath);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        WebUI.waitForElementVisible(buttonXNhanNhapTuExcel, 100);
+        WebUI.clickElement(buttonXNhanNhapTuExcel);
+        WebUI.waitForElementVisible(buttonDongY, 100);
+        WebUI.clickElement(buttonDongY);
+    }
+
+    public String getMessageAlert(){
+        WebUI.waitForElementVisible(messageAlert, 100);
+        return WebUI.getTextElement(messageAlert);
+    }
+
+    public void themMoiHSo(String maHSo, String soHSo, String soHop, String soTo, String tieuDe, String tuSo, String denSo, String tuNgay, String denNgay, String ngayLap, String linhVuc, String thoiGianBQuan, String tinhTrang, String ghiChu){
+        WebUI.waitForPageLoaded();
+        WebUI.waitForElementVisible(buttonThemMoi, 100);
+        WebUI.moveToElement(buttonThemMoi);
+        WebUI.clickElement(buttonThemMoi);
+        WebUI.waitForElementVisible(trangThai, 100);
+        WebUI.getTextElement(trangThai);
+        Assert.assertTrue(WebUI.getTextElement(trangThai).contains("THÊM MỚI"));
+        WebUI.setText(maHSoThemMoi, maHSo);
+        WebUI.setText(soHSoThemMoi, soHSo);
+        WebUI.setText(soHopThemMoi, soHop);
+        WebUI.setText(soToThemMoi, soTo);
+        WebUI.setText(tieuDeThemMoi, tieuDe);
+        WebUI.setText(tuSoThemMoi, tuSo);
+        WebUI.setText(denSoThemMoi, denSo);
+        WebUI.setText(tuNgayThemMoi, tuNgay);
+        WebUI.setText(denNgayThemMoi, denNgay);
+        WebUI.setText(ngayLapThemMoi, ngayLap);
+        AngularDropdown linhVucDropdown = new AngularDropdown(dropdownLinhVucThemMoi);
+        linhVucDropdown.setValues(linhVuc);
+        AngularDropdown thoiGianBQuanDropdown = new AngularDropdown(dropdownTGianBQuan);
+        thoiGianBQuanDropdown.setValues(thoiGianBQuan);
+        AngularDropdown tinhTrangDropdown = new AngularDropdown(dropdownTinhTrang);
+        tinhTrangDropdown.setValues(tinhTrang);
+        WebUI.setText(ghiChuThemMoi, ghiChu);
+        WebUI.clickElement(buttonLuuThemMoi);
+        String message = getMessageAlert();
+        if(soHSo == ""){
+            WebUI.waitForElementVisible(buttonDongY, 100);
+            WebUI.clickElement(buttonDongY);
+            Assert.assertTrue(message.contains("Không tìm thấy tiền tố Đơn vị hoặc Phòng ban của người dùng"));
+        } else if (tieuDe == ""){
+            Assert.assertTrue(message.contains("Bạn chưa nhập tiêu đề"));
+        } else{
+            WebUI.waitForElementVisible(buttonDongY, 100);
+            WebUI.clickElement(buttonDongY);
+            Assert.assertTrue(message.contains("Ghi nhận dữ liệu thành công"));
+        }
+    }
+
+    public void checkHSoDaThem(String maHSo, String soHSo, String tieuDe, String ngayLap, String linhVuc, String soHop){
+        WebUI.waitForPageLoaded();
+        WebUI.waitForElementVisible(buttonXuatExcel, 100);
+        WebUI.moveToElement(buttonXuatExcel);
+        WebUI.waitForElementVisible(tableHSoTLieu, 100);
+        AngularTable table = new AngularTable(tableHSoTLieu, "tbody");
+        WebUI.scrollToElementAtBottom(tableHSoTLieu);
+        AngularPaginator paginator = table.paginator;
+        int pageCount = paginator.getPagesCount();
+        System.out.println(pageCount);
+        List<String> maHSoList = table.getDisplayColumn(0);
+        Integer index = maHSoList.indexOf(maHSo);
+        List<String> thongTinHSo = table.getDisplayRow(index);
+        for (int i = 0; i < pageCount; i++){
+            if (thongTinHSo.get(0) == maHSo){
+                Assert.assertEquals(thongTinHSo.get(1), soHSo);
+                Assert.assertEquals(thongTinHSo.get(2), tieuDe);
+                Assert.assertEquals(thongTinHSo.get(3), ngayLap);
+                Assert.assertEquals(thongTinHSo.get(4), linhVuc);
+                Assert.assertEquals(thongTinHSo.get(6), soHop);
+                Assert.assertEquals(thongTinHSo.get(8), "Mới tạo");
+            }
+            if (i < pageCount - 1) {
+                WebUI.clickElement(By.xpath("(//button[contains(@class,'p-paginator-next')])[1]"));
+            }
+        }
+
     }
 }
