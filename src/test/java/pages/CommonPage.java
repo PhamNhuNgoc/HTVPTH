@@ -10,6 +10,7 @@ public class CommonPage {
 
     public HomePage homePage;
     public HSoTLieuPage hSoTLieuPage;
+    public HSoLTruPage hSoLTruPage;
 
     //Main menu
     By shopMenu = By.xpath("//a[text() = 'Shop']");

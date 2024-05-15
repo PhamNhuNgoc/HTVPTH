@@ -13,52 +13,52 @@ public class HSoTLieuTest extends BaseTest {
     public void setUp(){
         homePage = new HomePage();
         Assert.assertTrue(homePage.checkSideBarAppear());
-        homePage.openHSoTLieu();
+        homePage.openDuLieuMenu();
         hSoTLieuPage = new HSoTLieuPage();
     }
 
     @Test(dataProvider = "objLoaiHSo", dataProviderClass = HSoTLieuDataProvider.class)
     public void testChonLoaiHSo(String loaiHSo){
-        hSoTLieuPage.chonLoaiHSo(loaiHSo);
-        hSoTLieuPage.checkLoaiHSo(loaiHSo);
+        hSoTLieuPage.chonLoaiHSoFilter(loaiHSo);
+        hSoTLieuPage.checkLoaiHSoFilter(loaiHSo);
     }
 
     @Test(dataProvider = "objNamLapHSo", dataProviderClass = HSoTLieuDataProvider.class)
     public void testSetNamLapHSo(String nam){
-        hSoTLieuPage.setNamLapHSo(nam);
-        hSoTLieuPage.checkNamLapHSo(nam);
+        hSoTLieuPage.setNamLapHSoFilter(nam);
+        hSoTLieuPage.checkNamLapHSoFilter(nam);
     }
 
     @Test(dataProvider = "objLinhVuc", dataProviderClass = HSoTLieuDataProvider.class)
     public void testChonLinhVuc(String linhVuc){
-        hSoTLieuPage.chonLinhVuc(linhVuc);
-        hSoTLieuPage.checkLinhVuc(linhVuc);
+        hSoTLieuPage.chonLinhVucFilter(linhVuc);
+        hSoTLieuPage.checkLinhVucFilter(linhVuc);
     }
 
     @Test(dataProvider = "objNoiTaoHSo", dataProviderClass = HSoTLieuDataProvider.class)
     public void testSetNoiTaoHSo(String noiTaoHSo){
-        hSoTLieuPage.setNoiTaoHSo(noiTaoHSo);
-        hSoTLieuPage.checkNoiTaoHSo(noiTaoHSo);
+        hSoTLieuPage.setNoiTaoHSoFilter(noiTaoHSo);
+        hSoTLieuPage.checkNoiTaoHSoFilter(noiTaoHSo);
     }
 
     @Test(dataProvider = "objTieuDe", dataProviderClass = HSoTLieuDataProvider.class)
     public void testSetTieuDe(String tieuDe){
-        hSoTLieuPage.setTieuDe(tieuDe);
-        hSoTLieuPage.checkTieuDe(tieuDe);
+        hSoTLieuPage.setTieuDeFilter(tieuDe);
+        hSoTLieuPage.checkTieuDeFilter(tieuDe);
     }
 
     @Test(dataProvider = "objFilterHSo", dataProviderClass = HSoTLieuDataProvider.class)
     public void testFilterHSo(String loaiHSo, String nam, String linhVuc, String noiTaoHSo, String tieuDe){
-        hSoTLieuPage.chonLoaiHSo(loaiHSo);
-        hSoTLieuPage.setNamLapHSo(nam);
-        hSoTLieuPage.chonLinhVuc(linhVuc);
-        hSoTLieuPage.setNoiTaoHSo(noiTaoHSo);
-        hSoTLieuPage.setTieuDe(tieuDe);
-        hSoTLieuPage.checkLoaiHSo(loaiHSo);
-        hSoTLieuPage.checkNamLapHSo(nam);
-        hSoTLieuPage.checkLinhVuc(linhVuc);
-        hSoTLieuPage.checkNoiTaoHSo(noiTaoHSo);
-        hSoTLieuPage.checkTieuDe(tieuDe);
+        hSoTLieuPage.chonLoaiHSoFilter(loaiHSo);
+        hSoTLieuPage.setNamLapHSoFilter(nam);
+        hSoTLieuPage.chonLinhVucFilter(linhVuc);
+        hSoTLieuPage.setNoiTaoHSoFilter(noiTaoHSo);
+        hSoTLieuPage.setTieuDeFilter(tieuDe);
+        hSoTLieuPage.checkLoaiHSoFilter(loaiHSo);
+        hSoTLieuPage.checkNamLapHSoFilter(nam);
+        hSoTLieuPage.checkLinhVucFilter(linhVuc);
+        hSoTLieuPage.checkNoiTaoHSoFilter(noiTaoHSo);
+        hSoTLieuPage.checkTieuDeFilter(tieuDe);
     }
 
     @Test
@@ -76,7 +76,9 @@ public class HSoTLieuTest extends BaseTest {
     @Test(dataProvider = "objThemMoiHSo", dataProviderClass = HSoTLieuDataProvider.class)
     public void testThemMoiHSo(String maHSo, String soHSo, String soHop, String soTo, String tieuDe, String tuSo, String denSo, String tuNgay, String denNgay, String ngayLap, String linhVuc, String thoiGianBQuan, String tinhTrang, String ghiChu){
         hSoTLieuPage.themMoiHSo(maHSo, soHSo, soHop, soTo, tieuDe, tuSo, denSo, tuNgay, denNgay, ngayLap, linhVuc, thoiGianBQuan, tinhTrang, ghiChu);
-        hSoTLieuPage.checkHSoDaThem(maHSo, soHSo, tieuDe, ngayLap, linhVuc, soHop);
+        if (soHSo != "" && tieuDe != ""){
+            hSoTLieuPage.checkHSoDaThem(maHSo, soHSo, tieuDe, ngayLap, linhVuc, soHop);
+        }
     }
 
 }

@@ -1,0 +1,22 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Test Ho So Luu Tru page">
+    <!--<listeners>
+        <listener class-name="listeners.AnnotationTransformer"/>
+    </listeners>-->
+
+    <parameter name="browser" value="chrome" />
+    <test name="Danh Muc Ho So Luu Tru">
+        <parameter name="typeLogin" value="Đăng nhập bằng mã nhân viên" />
+        <parameter name="userID" value="28224" />
+        <parameter name="password" value="Spcit@123" />
+        <classes>
+            <class name="testcases.HSoLTruTest">
+                <methods>
+                    <include name="testListLinhVuc" />
+<!--                    <include name="testListTGianBQuan" />-->
+<!--                    <include name="testListTTrangHSo" />-->
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

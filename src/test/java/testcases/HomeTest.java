@@ -2,6 +2,7 @@ package testcases;
 
 import base.BaseTest;
 import base.WebUI;
+import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -16,8 +17,9 @@ public class HomeTest extends BaseTest {
 
     @Test
     public void testNavigateToHSoTLieu(){
-        homePage.openHSoTLieu();
-        WebUI.waitForPageLoaded();
+        homePage.openDuLieuMenu();
+        String url = WebUI.getCurrentUrl();
+        WebUI.waitUntilUrlContains(url, "http://10.170.210.202:7003/HTVPTH/#/hslt/hoso-tailieu", 100);
         Assert.assertEquals(WebUI.getCurrentUrl(), "http://10.170.210.202:7003/HTVPTH/#/hslt/hoso-tailieu");
     }
 }

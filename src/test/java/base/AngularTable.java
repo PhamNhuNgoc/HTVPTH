@@ -52,6 +52,16 @@ public class AngularTable {
         return results;
     }
 
+    public List<Boolean> getSelectedCheckboxColumn(int i){
+        List<WebElement> trTags = wrapperTable.findElements(By.xpath("./" + tbodyTag + "/tr"));
+        List<Boolean> results = new ArrayList<>();
+        if (!trTags.isEmpty())
+            for(WebElement trTag: trTags){
+                WebElement checkbox = trTag.findElement(By.xpath("./td/input"));
+                results.add(checkbox.isSelected());
+            }
+        return results;
+    }
     public List<String> getLastRow(){
         List<WebElement> trTags = wrapperTable.findElements(By.xpath("./" + tbodyTag + "/tr"));
         List<String> results = new ArrayList<String>();

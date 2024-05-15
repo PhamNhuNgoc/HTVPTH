@@ -3324,6 +3324,17 @@ public class WebUI {
         wait.until(ExpectedConditions.textToBePresentInElementLocated(messageDelete, s));
     }
 
+    public static void waitUntilSidebarExpanded(By sidebar, int timeout) {
+        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(timeout));
+        wait.until(ExpectedConditions.attributeContains(sidebar, "class", "expanded"));
+    }
+
+
+    public static void waitUntilUrlContains(String url, String url2, int timeout) {
+        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(timeout));
+        wait.until(ExpectedConditions.urlContains(url2));
+    }
+
     public static boolean isElementVisible(WebElement deleteButton, int timeout) {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(timeout));
@@ -3332,5 +3343,9 @@ public class WebUI {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public static boolean isElementSelected(By checkbox) {
+        return DriverManager.getDriver().findElement(checkbox).isSelected();
     }
 }
