@@ -3335,6 +3335,14 @@ public class WebUI {
         wait.until(ExpectedConditions.urlContains(url2));
     }
 
+    public static void waitForPeriod(int seconds) {
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static boolean isElementVisible(WebElement deleteButton, int timeout) {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(timeout));

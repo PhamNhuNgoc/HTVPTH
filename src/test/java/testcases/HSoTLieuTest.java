@@ -1,6 +1,7 @@
 package testcases;
 
 import base.BaseTest;
+import base.WebUI;
 import dataprovider.HSoTLieuDataProvider;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -64,7 +65,6 @@ public class HSoTLieuTest extends BaseTest {
     @Test
     public void testXuatExcel(){
         hSoTLieuPage.clickXuatExcel();
-        hSoTLieuPage.checkExcelFile();
     }
 
     @Test(dataProvider = "objNhapTuExcel", dataProviderClass = HSoTLieuDataProvider.class)
@@ -77,8 +77,62 @@ public class HSoTLieuTest extends BaseTest {
     public void testThemMoiHSo(String maHSo, String soHSo, String soHop, String soTo, String tieuDe, String tuSo, String denSo, String tuNgay, String denNgay, String ngayLap, String linhVuc, String thoiGianBQuan, String tinhTrang, String ghiChu){
         hSoTLieuPage.themMoiHSo(maHSo, soHSo, soHop, soTo, tieuDe, tuSo, denSo, tuNgay, denNgay, ngayLap, linhVuc, thoiGianBQuan, tinhTrang, ghiChu);
         if (soHSo != "" && tieuDe != ""){
-            hSoTLieuPage.checkHSoDaThem(maHSo, soHSo, tieuDe, ngayLap, linhVuc, soHop);
+            hSoTLieuPage.checkDSachHSoDaThem(maHSo, soHSo, tieuDe, ngayLap, linhVuc, soHop);
+            hSoTLieuPage.checkHSoDaThem(maHSo, soHSo, soHop, soTo, tieuDe, tuSo, denSo, tuNgay, denNgay, ngayLap, linhVuc, thoiGianBQuan, tinhTrang, ghiChu);
         }
     }
 
+    @Test(dataProvider = "objChinhSuaHSo", dataProviderClass = HSoTLieuDataProvider.class)
+    public void testCSuaHSoCu(String maHSo, String soHSo, String soHop, String soTo, String tieuDe, String tuSo, String denSo, String tuNgay, String denNgay, String ngayLap, String linhVuc, String thoiGianBQuan, String tinhTrang, String ghiChu){
+        hSoTLieuPage.chinhSuaHSoCu(maHSo, soHSo, soHop, soTo, tieuDe, tuSo, denSo, tuNgay, denNgay, ngayLap, linhVuc, thoiGianBQuan, tinhTrang, ghiChu);
+        hSoTLieuPage.checkDSachHSoDaThem(maHSo, soHSo, tieuDe, ngayLap, linhVuc, soHop);
+        hSoTLieuPage.checkHSoDaThem(maHSo, soHSo, soHop, soTo, tieuDe, tuSo, denSo, tuNgay, denNgay, ngayLap, linhVuc, thoiGianBQuan, tinhTrang, ghiChu);
+    }
+
+    @Test(dataProvider = "objNhapVBanTuExcel", dataProviderClass = HSoTLieuDataProvider.class)
+    public void testNhapVBanTuExcel(String maHSo, String filePath) throws Exception {
+        hSoTLieuPage.nhapVBanTuExcel(maHSo, filePath);
+    }
+
+    @Test(dataProvider = "objXuatExcelDSachVBan", dataProviderClass = HSoTLieuDataProvider.class)
+    public void testXuatExcelDSachVBan(String maHSo){
+        hSoTLieuPage.clickXuatExcelDSachVBan(maHSo);
+        hSoTLieuPage.checkXuatExcelDSachVBan();
+    }
+
+    @Test(dataProvider = "objThemVBan", dataProviderClass = HSoTLieuDataProvider.class)
+    public void testThemVBan(String maHSo, String soKHieu, String noiBHanh, String ngayBHanh, String soTo, String trichYeu, String ghiChu, String fileupload){
+        hSoTLieuPage.timHSoDaThem(maHSo);
+        hSoTLieuPage.themVBan(soKHieu, noiBHanh, ngayBHanh, soTo, trichYeu, ghiChu, fileupload);
+        hSoTLieuPage.checkVBanDaThem(soKHieu, noiBHanh, ngayBHanh, soTo, trichYeu);
+        hSoTLieuPage.checkTTinVBan(soKHieu, noiBHanh, ngayBHanh, soTo, trichYeu, ghiChu, fileupload);
+    }
+
+    @Test(dataProvider = "objXoaVBan", dataProviderClass = HSoTLieuDataProvider.class)
+    public void testXoaVBan(String maHSo, String soKHieu, String action){
+        hSoTLieuPage.timHSoDaThem(maHSo);
+        hSoTLieuPage.xoaVban(soKHieu, action);
+//        hSoTLieuPage.xoaTatCaVBan();
+        WebUI.reloadPage();
+    }
+
+    @Test(dataProvider = "objChinhSuaVBan", dataProviderClass = HSoTLieuDataProvider.class)
+    public void testChinhSuaVBan(String maHSo,String soKHieuCu, String soKHieuMoi, String noiBHanhMoi, String ngayBHanhMoi, String soToMoi, String trichYeuMoi, String ghiChuMoi, String fileupload){
+        hSoTLieuPage.timHSoDaThem(maHSo);
+        hSoTLieuPage.chinhSuaVBan(soKHieuCu, soKHieuMoi, noiBHanhMoi, ngayBHanhMoi, soToMoi, trichYeuMoi, ghiChuMoi, fileupload);
+        hSoTLieuPage.checkVBanDaThem(soKHieuMoi, noiBHanhMoi, ngayBHanhMoi, soToMoi, trichYeuMoi);
+        hSoTLieuPage.checkTTinVBan(soKHieuMoi, noiBHanhMoi, ngayBHanhMoi, soToMoi, trichYeuMoi, ghiChuMoi, fileupload);
+    }
+
+    @Test(dataProvider = "objThemFileVBan", dataProviderClass = HSoTLieuDataProvider.class)
+    public void testThemFileVBan(String maHSo, String soKHieu, String fileupload){
+        hSoTLieuPage.timHSoDaThem(maHSo);
+        hSoTLieuPage.themFileVBan(soKHieu, fileupload);
+        hSoTLieuPage.checkThemFileVBan(soKHieu, fileupload);
+    }
+
+    @Test(dataProvider = "objTaiVBan", dataProviderClass = HSoTLieuDataProvider.class)
+    public void testTaiVBan(String maHSo, String soKHieu){
+        hSoTLieuPage.taiVBan(maHSo, soKHieu);
+    }
 }

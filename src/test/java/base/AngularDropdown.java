@@ -170,4 +170,18 @@ public class AngularDropdown {
         }
         return listOptions;
     }
+
+    public String getSelectedValue(){
+//        By selectedValue = By.xpath("./div/div/span[contains(@class, 'p-dropdown-label')]");
+//        WebUI.waitForElementVisible(selectedValue, 100);
+        return angularEl.getText();
+    }
+
+    public String getSelectedOption(){
+        By selectedOption = By.xpath(".//span[contains(@class, 'p-dropdown-label')]/div/div");
+        WebUI.waitForElementVisible(selectedOption, 100);
+        WebUI.waitForElementClickable(selectedOption);
+        WebUI.moveToElement(selectedOption);
+        return angularEl.findElement(selectedOption).getText();
+    }
 }

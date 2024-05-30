@@ -20,7 +20,15 @@
 <!--                    <include name="testFilterHSo" />-->
 <!--                    <include name="testXuatExcel" />-->
 <!--                    <include name="testNhapTuExcel" />-->
-                    <include name="testThemMoiHSo" />
+<!--                    <include name="testThemMoiHSo" />-->
+<!--                    <include name="testCSuaHSoCu" />-->
+<!--                    <include name="testNhapVBanTuExcel" />-->
+<!--                    <include name="testXuatExcelDSachVBan" />-->
+<!--                    <include name="testThemVBan" />-->
+<!--                    <include name="testXoaVBan" />-->
+<!--                    <include name="testChinhSuaVBan" />-->
+<!--                    <include name="testThemFileVBan" />-->
+                    <include name="testTaiVBan" />
                 </methods>
             </class>
         </classes>

@@ -7,12 +7,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import reports.ExtentTestManager;
 
+import static org.apache.commons.lang3.ArrayUtils.indexOf;
+
 public class AngularCalendar {
     //WebDriver driver;
     private final WebElement angularEl;
     private final long SLEEP_STEP = 200;
     By monthButton = By.xpath(".//button[contains(@class, 'p-datepicker-month')]");
     By yearButton = By.xpath(".//button[contains(@class, 'p-datepicker-year')]");
+    By selectedDayButton = By.xpath(".//span[contains(@class, 'p-highlight')]");
     By prevButton = By.xpath(".//button[contains(@class, 'p-datepicker-prev')]");
     By nextButton = By.xpath(".//button[contains(@class, 'p-datepicker-next')]");
 
@@ -98,5 +101,28 @@ public class AngularCalendar {
         angularEl.findElement(By.xpath(xpath)).click();
         Log.info("Set value " + itemValue + " on " + angularEl);
         ExtentTestManager.logMessage(Status.PASS, "Set value " + itemValue + " on " + angularEl);
+    }
+
+    public String getSelectedValue(){
+        String[] arrOfMonth = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+        //click calendar object
+        angularEl.click();
+        Log.info("Click element " + angularEl);
+        ExtentTestManager.logMessage(Status.PASS, "Click element " + angularEl);
+        WebUI.sleep(SLEEP_STEP);
+
+        WebUI.waitForElementVisible(yearButton);
+
+        String selectedDate = angularEl.findElement(selectedDayButton).getText();
+        if (selectedDate.length() == 1){
+            selectedDate = "0" + selectedDate;
+        }
+        String selectedMonth = angularEl.findElement(monthButton).getText();
+        selectedMonth = String.valueOf(1 + indexOf(arrOfMonth, selectedMonth));
+        if (selectedMonth.length() == 1){
+            selectedMonth = "0" + selectedMonth;
+        }
+        String selectedYear = angularEl.findElement(yearButton).getText();
+        return selectedDate + "/" + selectedMonth + "/" + selectedYear;
     }
 }
