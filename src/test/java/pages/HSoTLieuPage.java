@@ -15,7 +15,7 @@ import static org.openqa.selenium.Keys.ENTER;
 
 public class HSoTLieuPage extends CommonPage{
     By dropdownLoaiHSoFilter = By.xpath("//label[text()='Loại hồ sơ']/following-sibling::p-dropdown");
-    By namLapHSoFilter = By.xpath("//label[text()='Năm lập hồ sơ']/following-sibling::p-inputnumber//input");
+    By namLapHSoFilter = By.xpath("//label[contains(text(), 'Năm lập ')]/following-sibling::p-inputnumber//input");
     By dropdownLinhVucFilter = By.xpath("//label[text()='Lĩnh vực']/following-sibling::p-dropdown");
     By noiTaoHSoFilter = By.xpath("//label[text()='Nơi tạo hồ sơ']/following-sibling::input");
     By tieuDeFilter = By.xpath("(//label[text()='Tiêu đề']/following-sibling::input)[1]");
@@ -52,17 +52,19 @@ public class HSoTLieuPage extends CommonPage{
     By soKyHieuVB = By.xpath("//label[text()='Số ký hiệu']/following-sibling::input");
     By noiBHanhVB = By.xpath("//label[text()='Nơi ban hành']/following-sibling::textarea");
     By ngayBanHanhVB = By.xpath("//label[text()='Ngày ban hành']/following-sibling::p-calendar");
-    By soToVB = By.xpath("//label[text()='Số tờ']/following-sibling::input");
+    By soToVB = By.xpath("//label[text()='Tờ số']/following-sibling::input");
     By trichYeuVB = By.xpath("//label[text()='Trích yếu']/following-sibling::textarea");
     By ghichuVB = By.xpath("//label[text()='Trích yếu']/parent::div/following-sibling::div[1]/textarea");
-    By buttonLuuVB = By.xpath("//p-fileupload/following-sibling::button/span[text()='Lưu']");
+    By buttonLuuVB = By.xpath("(//button/span[text()='Lưu'])[2]");
     By tableVBan = By.xpath("(//p-table)[2]");
     public void chonLoaiHSoFilter(String loaiHSo){
         WebUI.waitForPageLoaded();
         WebUI.waitForElementVisible(buttonXuatExcel, 5);
         WebUI.moveToElement(buttonXuatExcel);
         WebUI.moveToElement(dropdownLoaiHSoFilter);
+        WebUI.scrollToElementAtBottom(dropdownLoaiHSoFilter);
         WebUI.waitForElementVisible(dropdownLoaiHSoFilter, 100);
+        WebUI.waitForElementClickable(dropdownLoaiHSoFilter, 100);
         AngularDropdown chonLoaiHSo = new AngularDropdown(dropdownLoaiHSoFilter);
         chonLoaiHSo.setValues(loaiHSo);
     }
@@ -99,6 +101,7 @@ public class HSoTLieuPage extends CommonPage{
         WebUI.waitForPageLoaded();
         WebUI.waitForElementVisible(buttonXuatExcel, 5);
         WebUI.moveToElement(buttonXuatExcel);
+        WebUI.scrollToElementAtBottom(namLapHSoFilter);
         WebUI.moveToElement(namLapHSoFilter);
         WebUI.waitForElementVisible(namLapHSoFilter, 100);
         WebUI.clearText(namLapHSoFilter);
@@ -133,6 +136,7 @@ public class HSoTLieuPage extends CommonPage{
         WebUI.waitForPageLoaded();
         WebUI.waitForElementVisible(buttonXuatExcel, 5);
         WebUI.moveToElement(buttonXuatExcel);
+        WebUI.scrollToElementAtBottom(dropdownLinhVucFilter);
         WebUI.moveToElement(dropdownLinhVucFilter);
         WebUI.waitForElementVisible(dropdownLinhVucFilter, 100);
         AngularDropdown chonLinhVuc = new AngularDropdown(dropdownLinhVucFilter);
@@ -209,11 +213,12 @@ public class HSoTLieuPage extends CommonPage{
         WebUI.waitForElementVisible(tieuDeFilter, 100);
         WebUI.clearText(tieuDeFilter);
         WebUI.setText(tieuDeFilter, tieuDeHSo);
+        WebUI.waitForTextToBeChanged(tableHSoTLieu);
     }
 
     public void checkTieuDeFilter(String tieuDeHSo) {
         WebUI.waitForPageLoaded(100);
-        WebUI.waitForTextToBeChanged(tableHSoTLieu);
+        WebUI.waitForPeriod(10);
         WebUI.waitForElementVisible(tableHSoTLieu, 100);
         AngularTable table = new AngularTable(tableHSoTLieu, "tbody");
         WebUI.scrollToElementAtBottom(tableHSoTLieu);
@@ -507,23 +512,14 @@ public class HSoTLieuPage extends CommonPage{
         WebUI.waitForElementVisible(buttonXuatExcelDSachVBan, 100);
         WebUI.moveToElement(buttonXuatExcelDSachVBan);
         WebUI.clickElement(buttonXuatExcelDSachVBan);
-    }
-
-    public void checkXuatExcelDSachVBan(){
-        String downloadPath = System.getProperty("user.dir") + "/src/test/resources/downloadedFiles";
-        File file = new File(downloadPath);
-        File[] files = file.listFiles();
-        for (File f: files){
-            Assert.assertTrue(f.getName().contains("DSHoSo"));
-            f.delete();
-        }
+        WebUI.verifyFileDownloadedWithJS_Contains("DSVanBan");
     }
 
     public void nhapTTinVBan(String soKHieu, String noiBHanh, String ngayBHanh, String soTo, String trichYeu, String ghiChu, String fileupload){
         WebUI.waitForElementVisible(soKyHieuVB, 100);
         WebUI.setText(soKyHieuVB, soKHieu);
         WebUI.setText(noiBHanhVB, noiBHanh);
-        WebUI.scrollToElementAtTop(soKyHieuVB);
+        WebUI.scrollToElementAtTop(buttonDuyetFile);
         AngularCalendar ngayBHanhVB = new AngularCalendar(ngayBanHanhVB);
         ngayBHanhVB.setValues(ngayBHanh);
         WebUI.setText(soToVB, soTo);
@@ -570,6 +566,7 @@ public class HSoTLieuPage extends CommonPage{
         for (WebElement deleteFileButton: deleteFileButtonsElements){
             deleteFileButton.click();
         }
+        WebUI.clickElement(buttonDongY);
         Assert.assertTrue(getMessageAlert().contains("Quá trình xóa file thành công"));
     }
 
@@ -588,12 +585,12 @@ public class HSoTLieuPage extends CommonPage{
                 System.out.println(soKHieuItem);
                 if (soKHieuItem.equals(soKHieu)){
                     List<String> thongTinVBan = table.getDisplayRow(soKHieuList.indexOf(soKHieuItem));
-                    String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-                    String[] ngayBHanhArr = ngayBHanh.split("/");
-                    if (ngayBHanhArr[0].startsWith("0")){
-                        ngayBHanhArr[0] = ngayBHanhArr[0].substring(1);
-                    }
-                    ngayBHanh = months[Integer.parseInt(ngayBHanhArr[1]) - 1] + " " + ngayBHanhArr[0] + ", " + ngayBHanhArr[2];
+//                    String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+//                    String[] ngayBHanhArr = ngayBHanh.split("/");
+//                    if (ngayBHanhArr[0].startsWith("0")){
+//                        ngayBHanhArr[0] = ngayBHanhArr[0].substring(1);
+//                    }
+//                    ngayBHanh = months[Integer.parseInt(ngayBHanhArr[1]) - 1] + " " + ngayBHanhArr[0] + ", " + ngayBHanhArr[2];
                     Assert.assertTrue(thongTinVBan.get(1).contains(ngayBHanh));
                     Assert.assertEquals(thongTinVBan.get(2), noiBHanh);
                     Assert.assertEquals(thongTinVBan.get(3), trichYeu);
@@ -721,7 +718,7 @@ public class HSoTLieuPage extends CommonPage{
             System.out.println(soKHieuList);
             for (String soKHieuItem: soKHieuList){
                 System.out.println(soKHieuItem);
-                if (soKHieuItem.contains(soKHieu)){
+                if (soKHieuItem.equals(soKHieu)){
                     return true;
                 }
             }

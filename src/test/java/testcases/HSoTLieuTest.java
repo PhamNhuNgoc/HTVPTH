@@ -97,7 +97,6 @@ public class HSoTLieuTest extends BaseTest {
     @Test(dataProvider = "objXuatExcelDSachVBan", dataProviderClass = HSoTLieuDataProvider.class)
     public void testXuatExcelDSachVBan(String maHSo){
         hSoTLieuPage.clickXuatExcelDSachVBan(maHSo);
-        hSoTLieuPage.checkXuatExcelDSachVBan();
     }
 
     @Test(dataProvider = "objThemVBan", dataProviderClass = HSoTLieuDataProvider.class)
