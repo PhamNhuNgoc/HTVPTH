@@ -348,7 +348,7 @@ public class WebUI {
         File file = new File(element);
         Log.info(element);
         Log.info(file.getName());
-        if (file.exists() && file.getName().trim().contains(fileName)) {
+        if (file.getName().trim().contains(fileName)) {
             return true;
         } else {
             return false;

@@ -12,22 +12,22 @@
         <classes>
             <class name="testcases.HSoTLieuTest">
                 <methods>
-<!--                    <include name="testChonLoaiHSo" />-->
-<!--                    <include name="testSetNamLapHSo" />-->
-<!--                    <include name="testChonLinhVuc" />-->
-<!--                    <include name="testSetNoiTaoHSo" />-->
-<!--                    <include name="testSetTieuDe" />-->
-<!--                    <include name="testFilterHSo" />-->
-<!--                    <include name="testXuatExcel" />-->
-<!--                    <include name="testNhapTuExcel" />-->
-<!--                    <include name="testThemMoiHSo" />-->
-<!--                    <include name="testCSuaHSoCu" />-->
-<!--                    <include name="testNhapVBanTuExcel" />-->
-<!--                    <include name="testXuatExcelDSachVBan" />-->
-<!--                    <include name="testThemVBan" />-->
-<!--                    <include name="testXoaVBan" />-->
-<!--                    <include name="testChinhSuaVBan" />-->
-<!--                    <include name="testThemFileVBan" />-->
+                    <include name="testChonLoaiHSo" />
+                    <include name="testSetNamLapHSo" />
+                    <include name="testChonLinhVuc" />
+                    <include name="testSetNoiTaoHSo" />
+                    <include name="testSetTieuDe" />
+                    <include name="testFilterHSo" />
+                    <include name="testXuatExcel" />
+                    <include name="testNhapTuExcel" />
+                    <include name="testThemMoiHSo" />
+                    <include name="testCSuaHSoCu" />
+                    <include name="testNhapVBanTuExcel" />
+                    <include name="testXuatExcelDSachVBan" />
+                    <include name="testThemVBan" />
+                    <include name="testXoaVBan" />
+                    <include name="testChinhSuaVBan" />
+                    <include name="testThemFileVBan" />
                     <include name="testTaiVBan" />
                 </methods>
             </class>

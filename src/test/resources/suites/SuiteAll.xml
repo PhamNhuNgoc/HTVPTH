@@ -1,6 +1,6 @@
-<suite name="Dang ky sang kien">
+<suite name="HTVPTH">
     <suite-files>
-        <suite-file path="Login.xml"/>
-        <suite-file path="Home.xml"/>
+        <suite-file path="HSoLTru.xml"/>
+        <suite-file path="HSoTLieu.xml"/>
     </suite-files>
 </suite>

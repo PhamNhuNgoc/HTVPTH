@@ -197,6 +197,7 @@ public class HSoTLieuPage extends CommonPage{
                 else Assert.assertTrue(noiTaoHSoItem.contains(noiTaoHSo));
             }
             if (i < pageCount - 1) {
+                WebUI.waitForElementClickable(By.xpath("(//button[contains(@class,'p-paginator-next')])[1]"));
                 WebUI.clickElement(By.xpath("(//button[contains(@class,'p-paginator-next')])[1]"));
             }
         }
@@ -250,7 +251,7 @@ public class HSoTLieuPage extends CommonPage{
         WebUI.moveToElement(buttonXuatExcel);
         WebUI.clickElement(buttonXuatExcel);
         WebUI.waitForPeriod(30);
-        WebUI.verifyFileDownloadedWithJS_Contains("DSHoSo");
+        Assert.assertTrue(WebUI.verifyFileDownloadedWithJS_Contains("DSHoSo"));
     }
 
     public void nhapTuExcel(String filePath) throws Exception {
@@ -290,6 +291,7 @@ public class HSoTLieuPage extends CommonPage{
         WebUI.setText(tieuDeThemMoi, tieuDe);
         WebUI.setText(tuSoThemMoi, tuSo);
         WebUI.setText(denSoThemMoi, denSo);
+        WebUI.scrollToElementAtBottom(tuNgayThemMoi);
         AngularCalendar tuNgayCalendar = new AngularCalendar(tuNgayThemMoi);
         tuNgayCalendar.setValues(tuNgay);
         AngularCalendar denNgayCalendar = new AngularCalendar(denNgayThemMoi);
@@ -512,7 +514,7 @@ public class HSoTLieuPage extends CommonPage{
         WebUI.waitForElementVisible(buttonXuatExcelDSachVBan, 100);
         WebUI.moveToElement(buttonXuatExcelDSachVBan);
         WebUI.clickElement(buttonXuatExcelDSachVBan);
-        WebUI.verifyFileDownloadedWithJS_Contains("DSVanBan");
+        Assert.assertTrue(WebUI.verifyFileDownloadedWithJS_Contains("DSVanBan"));
     }
 
     public void nhapTTinVBan(String soKHieu, String noiBHanh, String ngayBHanh, String soTo, String trichYeu, String ghiChu, String fileupload){
@@ -808,7 +810,8 @@ public class HSoTLieuPage extends CommonPage{
                 WebUI.clickElement(By.xpath("(//button[contains(@class,'p-paginator-next')])[1]"));
             }
         }
-        WebUI.waitForPeriod(30);
-        WebUI.verifyFileDownloadedWithJS_Contains(soKHieu);
+        WebUI.waitForPeriod(5);
+        System.out.println(soKHieu + ".zip");
+        Assert.assertTrue(WebUI.verifyFileDownloadedWithJS_Contains(soKHieu + ".zip"));
     }
 }

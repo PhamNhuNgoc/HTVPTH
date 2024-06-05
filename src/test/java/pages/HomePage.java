@@ -25,6 +25,7 @@ public class HomePage extends CommonPage {
         WebUI.waitForPageLoaded(100);
         WebUI.moveToElement(sideBar);
         WebUI.waitForElementVisible(HSoLTru, 100);
+        WebUI.waitForElementClickable(HSoLTru, 100);
         WebUI.clickElement(HSoLTru);
         WebUI.clickElement(dMucLVucMenu);
     }
@@ -33,6 +34,7 @@ public class HomePage extends CommonPage {
         WebUI.waitForPageLoaded(100);
         WebUI.moveToElement(sideBar);
         WebUI.waitForElementVisible(HSoLTru, 100);
+        WebUI.waitForElementClickable(HSoLTru, 100);
         WebUI.clickElement(HSoLTru);
         WebUI.clickElement(dMucTGianBQuanMenu);
     }
@@ -41,6 +43,7 @@ public class HomePage extends CommonPage {
         WebUI.waitForPageLoaded(100);
         WebUI.moveToElement(sideBar);
         WebUI.waitForElementVisible(HSoLTru, 100);
+        WebUI.waitForElementClickable(HSoLTru, 100);
         WebUI.clickElement(HSoLTru);
         WebUI.clickElement(dMucTTrangHSoMenu);
     }

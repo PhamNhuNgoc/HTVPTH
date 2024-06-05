@@ -58,8 +58,8 @@ public class HSoTLieuDataProvider{
     public Object[][] objThemMoiHSo(){
         return new Object[][]{
                 {"04062024", "2024", "2", "4", "Tiêu Đề Hồ Sơ", "2", "46", "01/06/2024", "04/06/2024", "04/06/2024", "-Khoa học", "10 năm", "Mới", "Ghi Chú Hồ Sơ"},
-//                {"11111", "", "1", "100", "Tiêu Đề Hồ Sơ", "1", "111", "01/01/2024", "01/05/2024", "10/05/2024", "-Nghệ thuật", "20 năm", "Mới", "Ghi Chú Hồ Sơ"},
-//                {"11111", "111", "1", "100", "", "1", "111", "01/01/2024", "01/05/2024", "10/05/2024", "-Nghệ thuật", "20 năm", "Mới", "Ghi Chú Hồ Sơ"},
+                {"11111", "", "1", "100", "Tiêu Đề Hồ Sơ", "1", "111", "01/01/2024", "01/05/2024", "10/05/2024", "-Nghệ thuật", "20 năm", "Mới", "Ghi Chú Hồ Sơ"},
+                {"11111", "111", "1", "100", "", "1", "111", "01/01/2024", "01/05/2024", "10/05/2024", "-Nghệ thuật", "20 năm", "Mới", "Ghi Chú Hồ Sơ"},
         };
     }
 
@@ -86,15 +86,17 @@ public class HSoTLieuDataProvider{
     @DataProvider
     public Object[][] objThemVBan() {
         return new Object[][]{
+                {"11111", "AAA", "Thành phố Hồ Chí Minh", "01/01/2024", "4", "Trích yếu văn bản", "Ghi chú văn bản", "src\\test\\resources\\importedFiles\\AQ10-Child.pdf"},
                 {"11111", "AAAA", "Thành phố Hồ Chí Minh", "01/01/2024", "5", "Trích yếu văn bản", "Ghi chú văn bản", "src\\test\\resources\\importedFiles\\AQ10-Child.pdf"},
+                {"11111", "BBBB", "Thành phố Hồ Chí Minh", "01/01/2024", "7", "Trích yếu văn bản", "Ghi chú văn bản", "src\\test\\resources\\importedFiles\\AQ10-Child.pdf"}
         };
     }
 
     @DataProvider
     public Object[][] objXoaVBan() {
         return new Object[][]{
-                {"11111", "AAAA", "Hủy"},
-                {"11111", "AAAA", "Xác nhận"},
+                {"11111", "AAA", "Hủy"},
+                {"11111", "AAA", "Xác nhận"},
         };
     }
 
@@ -108,14 +110,14 @@ public class HSoTLieuDataProvider{
     @DataProvider
     public Object[][] objThemFileVBan(){
         return new Object[][]{
-                {"11111", "AAAA", "src\\test\\resources\\importedFiles\\IT-Security-test-WS2020.pdf"},
+                {"11111", "BBBB", "src\\test\\resources\\importedFiles\\IT-Security-test-WS2020.pdf"},
         };
     }
 
     @DataProvider
     public Object[][] objTaiVBan(){
         return new Object[][]{
-                {"11111", "AAAA"},
+                {"11111", "BBBB"},
         };
     }
 }

@@ -13,8 +13,8 @@
             <class name="testcases.HSoLTruTest">
                 <methods>
                     <include name="testListLinhVuc" />
-<!--                    <include name="testListTGianBQuan" />-->
-<!--                    <include name="testListTTrangHSo" />-->
+                    <include name="testListTGianBQuan" />
+                    <include name="testListTTrangHSo" />
                 </methods>
             </class>
         </classes>
