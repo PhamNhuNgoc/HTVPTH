@@ -97,6 +97,10 @@ public class HSoTLieuTest extends BaseTest {
             hSoTLieuPage.checkDSachHSoDaThem(maHSo, soHSo, tieuDe, ngayLap, linhVuc, soHop);
             hSoTLieuPage.checkHSoDaThem(maHSo, soHSo, soHop, soTo, tieuDe, tuSo, denSo, tuNgay, denNgay, ngayLap, linhVuc, thoiGianBQuan, tinhTrang, ghiChu);
         }
+        else{
+            WebUI.reloadPage();
+            Assert.assertFalse(hSoTLieuPage.checkDSachHSoDaThem(maHSo));
+        }
         WebUI.reloadPage();
     }
 

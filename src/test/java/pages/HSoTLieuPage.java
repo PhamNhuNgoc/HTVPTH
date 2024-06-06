@@ -321,11 +321,9 @@ public class HSoTLieuPage extends CommonPage{
     public void clickLuuThemMoi(String soHSo, String tieuDe){
         WebUI.clickElement(buttonLuu);
         if(soHSo == ""){
-            System.out.println("Không tìm thấy tiền tố Đơn vị hoặc Phòng ban của người dùng");
-            WebUI.waitForElementVisible(buttonDongY, 100);
-            WebUI.clickElement(buttonDongY);
+            System.out.println("Bạn chưa nhập số hồ sơ");
             String message = getMessageAlert();
-            Assert.assertTrue(message.contains("Không tìm thấy tiền tố Đơn vị hoặc Phòng ban của người dùng"));
+            Assert.assertTrue(message.contains("Bạn chưa nhập số hồ sơ"));
         } else if (tieuDe == ""){
             System.out.println("Bạn chưa nhập tiêu đề");
             String message = getMessageAlert();
@@ -421,6 +419,28 @@ public class HSoTLieuPage extends CommonPage{
                 WebUI.clickElement(By.xpath("(//button[contains(@class,'p-paginator-next')])[1]"));
             }
         }
+    }
+
+    public boolean checkDSachHSoDaThem(String maHSo){
+        WebUI.waitForPageLoaded();
+        WebUI.waitForElementVisible(buttonThemMoi, 100);
+        WebUI.moveToElement(buttonThemMoi);
+        WebUI.waitForElementVisible(tableHSoTLieu, 100);
+        AngularTable table = new AngularTable(tableHSoTLieu, "tbody");
+        WebUI.scrollToElementAtBottom(tableHSoTLieu);
+        AngularPaginator paginator = table.paginator;
+        int pageCount = paginator.getPagesCount();
+        System.out.println(pageCount);
+        for (int i = 0; i < pageCount; i++){
+            List<String> maHSoList = table.getDisplayColumn(0);
+            if (maHSoList.get(0).contains("SPCIT.CNPM." + maHSo)){
+                return true;
+            }
+            if (i < pageCount - 1) {
+                WebUI.clickElement(By.xpath("(//button[contains(@class,'p-paginator-next')])[1]"));
+            }
+        }
+        return false;
     }
 
     public void checkHSoDaThem(String maHSo, String soHSo, String soHop, String soTo, String tieuDe, String tuSo, String denSo, String tuNgay, String denNgay, String ngayLap, String linhVuc, String thoiGianBQuan, String tinhTrang, String ghiChu){
